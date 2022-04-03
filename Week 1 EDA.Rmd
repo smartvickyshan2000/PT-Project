@@ -1,0 +1,68 @@
+---
+title: "Week 1 EDA"
+author: "Wuji Shan, Guangze Yu"
+date: "4/3/2022"
+output: pdf_document
+---
+
+```{r}
+# source("Data Wrangling.R")
+# source("functions used.R")
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+```
+
+```{r}
+full <- cbind(IDinfo, discrete)
+left <- full %>% filter(KNEE == "LEFT")
+right <- full %>% filter(KNEE == "RIGHT")
+```
+
+```{r}
+trial1l <- trial(left,"1")
+trial1r <- trial(right,"1")
+trial2l <- trial(left,"2")
+trial2r <- trial(right,"2")
+trial3l <- trial(left,"3")
+trial3r <- trial(right,"3")
+trial4l <- trial(left,"4")
+trial4r <- trial(right,"4")
+trial5l <- trial(left,"5")
+trial5r <- trial(right,"5")
+trialset <- c('1l', '1r', '2l', '2r', '3l', '3r', '4l', '4r', '5l', '5r')
+mean_trial_length <- rbind(mean(trial1l$tr_length), mean(trial1r$tr_length),
+                         mean(trial2l$tr_length), mean(trial2r$tr_length),
+                         mean(trial3l$tr_length), mean(trial3r$tr_length),
+                         mean(trial4l$tr_length), mean(trial4r$tr_length),
+                         mean(trial5l$tr_length), mean(trial5r$tr_length))
+mean_length <- data.frame(trialset, mean_trial_length)
+mean_length_left <- data.frame(c('1', '2', '3', '4', '5'),
+                               rbind(mean(trial1l$tr_length),mean(trial2l$tr_length),
+                                     mean(trial3l$tr_length),mean(trial4l$tr_length),
+                                     mean(trial5l$tr_length)))
+colnames(mean_length_left) <- c('trialset_left', 'mean_left')
+mean_length_right <- data.frame(c('1', '2', '3', '4', '5'),
+                               rbind(mean(trial1r$tr_length),mean(trial2r$tr_length),
+                                     mean(trial3r$tr_length),mean(trial4r$tr_length),
+                                     mean(trial5r$tr_length)))
+colnames(mean_length_right) <- c('trialset_right', 'mean_right')
+
+ggplot() + 
+  geom_line(data = mean_length_left, aes(x = trialset_left, y = mean_left), 
+            group = 1, color = "red") + 
+  geom_line(data = mean_length_right, aes(x = trialset_right, y = mean_right), 
+            group = 1, color = "blue") + 
+  xlab("Trial Number") + ylab("Mean of tr_length")
+```
+
+
+
+
+
+
+
+
