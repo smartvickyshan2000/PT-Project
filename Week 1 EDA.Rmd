@@ -59,6 +59,38 @@ ggplot() +
   xlab("Trial Number") + ylab("Mean of tr_length")
 ```
 
+```{r}
+difference <- data.frame(c('left','right'),
+                         c(mean(left$vGRF_impulse), mean(right$vGRF_impulse)),
+                         c(mean(left$mGRF_impulse), mean(right$mGRF_impulse)),
+                         c(mean(left$lGRF_impulse), mean(right$lGRF_impulse)),
+                         c(mean(left$aGRF_impulse), mean(right$aGRF_impulse)),
+                         c(mean(left$pGRF_impulse), mean(right$pGRF_impulse)),
+                         c(mean(left$stancetime), mean(right$stancetime)),
+                         c(mean(left$TO_angle), mean(right$TO_angle)))
+colnames(difference) <- c('KNEE','vGRF_impulse','mGRF_impulse','lGRF_impulse',
+                          'aGRF_impulse','pGRF_impulse','stancetime','TO_angle')
+```
+```{r}
+ggplot() + 
+  geom_line(data = difference, aes(x = KNEE, y = vGRF_impulse), 
+            group = 1, color = "red") + 
+  geom_line(data = difference, aes(x = KNEE, y = mGRF_impulse), 
+            group = 1, color = "blue") + 
+  geom_line(data = difference, aes(x = KNEE, y = lGRF_impulse), 
+            group = 1, color = "green") + 
+  geom_line(data = difference, aes(x = KNEE, y = aGRF_impulse), 
+            group = 1, color = "purple") + 
+  geom_line(data = difference, aes(x = KNEE, y = pGRF_impulse), 
+            group = 1, color = "pink") + 
+  geom_line(data = difference, aes(x = KNEE, y = stancetime), 
+            group = 1, color = "steelblue") + 
+  geom_line(data = difference, aes(x = KNEE, y = TO_angle), 
+            group = 1, color = "yellow") +
+  xlab("KNEE") + ylab("mean")
+```
+
+
 
 
 
