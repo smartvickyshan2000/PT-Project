@@ -90,10 +90,104 @@ ggplot() +
   xlab("KNEE") + ylab("mean")
 ```
 
+```{r}
+difference2 <- data.frame(c('left','right'),
+                         c(mean(left$vGRF_avgLR), mean(right$vGRF_avgLR)),
+                         c(mean(left$vGRF_iLR_max), mean(right$vGRF_iLR_max)),
+                         c(mean(left$vGRF_avgULR), mean(right$vGRF_avgULR)),
+                         c(mean(left$vGRF_iULR_max), mean(right$vGRF_iULR_max)),
+                         c(mean(left$vGRF_peak1), mean(right$vGRF_peak1)),
+                         c(mean(left$vGRF_peak2), mean(right$vGRF_peak2)),
+                         c(mean(left$vGRF_valley), mean(right$vGRF_valley)))
+colnames(difference2) <- c('KNEE','vGRF_avgLR','vGRF_iLR_max','vGRF_avgULR',
+                          'vGRF_iULR_max','vGRF_peak1','vGRF_peak2','vGRF_valley')
+```
+```{r}
+ggplot() + 
+  geom_line(data = difference2, aes(x = KNEE, y = vGRF_avgLR), 
+            group = 1, color = "red") + 
+  geom_line(data = difference2, aes(x = KNEE, y = vGRF_iLR_max), 
+            group = 1, color = "blue") + 
+  geom_line(data = difference2, aes(x = KNEE, y = vGRF_avgULR), 
+            group = 1, color = "green") + 
+  geom_line(data = difference2, aes(x = KNEE, y = vGRF_iULR_max), 
+            group = 1, color = "purple") + 
+  geom_line(data = difference2, aes(x = KNEE, y = vGRF_peak1), 
+            group = 1, color = "pink") + 
+  geom_line(data = difference2, aes(x = KNEE, y = vGRF_peak2), 
+            group = 1, color = "steelblue") + 
+  geom_line(data = difference2, aes(x = KNEE, y = vGRF_valley), 
+            group = 1, color = "yellow") +
+  xlab("KNEE") + ylab("mean")
+```
 
+```{r}
+difference3 <- data.frame(c('left','right'),
+                         c(mean(left$apGRF_peak1), mean(right$apGRF_peak1)),
+                         c(mean(left$apGRF_peak2), mean(right$apGRF_peak2)),
+                         c(mean(left$mlGRF_peak1), mean(right$mlGRF_peak1)),
+                         c(mean(left$mlGRF_peak2), mean(right$mlGRF_peak2)),
+                         c(mean(left$mlGRF_peak3), mean(right$mlGRF_peak3)),
+                         c(mean(left$t_vGRF_iLR_max_PERC), mean(right$t_vGRF_iLR_max_PERC)),
+                         c(mean(left$t_vGRF_iULR_max_PERC),
+                           mean(right$t_vGRF_iULR_max_PERC)))
+colnames(difference3) <- c('KNEE','apGRF_peak1','apGRF_peak2',
+                           'mlGRF_peak1','mlGRF_peak2','mlGRF_peak3',
+                           't_vGRF_iLR_max_PERC','t_vGRF_iULR_max_PERC')
+```
+```{r}
+ggplot() + 
+  geom_line(data = difference3, aes(x = KNEE, y = apGRF_peak1), 
+            group = 1, color = "red") + 
+  geom_line(data = difference3, aes(x = KNEE, y = apGRF_peak2), 
+            group = 1, color = "blue") + 
+  geom_line(data = difference3, aes(x = KNEE, y = mlGRF_peak1), 
+            group = 1, color = "green") + 
+  geom_line(data = difference3, aes(x = KNEE, y = mlGRF_peak2), 
+            group = 1, color = "purple") + 
+  geom_line(data = difference3, aes(x = KNEE, y = mlGRF_peak3), 
+            group = 1, color = "pink") + 
+  geom_line(data = difference3, aes(x = KNEE, y = t_vGRF_iLR_max_PERC), 
+            group = 1, color = "steelblue") + 
+  geom_line(data = difference3, aes(x = KNEE, y = t_vGRF_iULR_max_PERC), 
+            group = 1, color = "yellow") +
+  xlab("KNEE") + ylab("mean")
+```
 
-
-
+```{r}
+difference4 <- data.frame(c('left','right'),
+                         c(mean(left$t_vGRF_peak1_PERC), mean(right$t_vGRF_peak1_PERC)),
+                         c(mean(left$t_vGRF_peak2_PERC), mean(right$t_vGRF_peak2_PERC)),
+                         c(mean(left$t_vGRF_valley_PERC), mean(right$t_vGRF_valley_PERC)),
+                         c(mean(left$t_apGRF_peak1_PERC), mean(right$t_apGRF_peak1_PERC)),
+                         c(mean(left$t_apGRF_peak2_PERC), mean(right$t_apGRF_peak2_PERC)),
+                         c(mean(left$t_mlGRF_peak1_PERC), mean(right$t_mlGRF_peak1_PERC)),
+                         c(mean(left$t_mlGRF_peak2_PERC), mean(right$t_mlGRF_peak2_PERC)),
+                         c(mean(left$t_mlGRF_peak3_PERC), mean(right$t_mlGRF_peak3_PERC)))
+colnames(difference4) <- c('KNEE','t_vGRF_peak1_PERC','t_vGRF_peak2_PERC',
+                           't_vGRF_valley_PERC','t_apGRF_peak1_PERC','t_apGRF_peak2_PERC',
+                           't_mlGRF_peak1_PERC','t_mlGRF_peak2_PERC','t_mlGRF_peak3_PERC')
+```
+```{r}
+ggplot() + 
+  geom_line(data = difference4, aes(x = KNEE, y = t_vGRF_peak1_PERC), 
+            group = 1, color = "red") + 
+  geom_line(data = difference4, aes(x = KNEE, y = t_vGRF_peak2_PERC), 
+            group = 1, color = "blue") + 
+  geom_line(data = difference4, aes(x = KNEE, y = t_vGRF_valley_PERC), 
+            group = 1, color = "green") + 
+  geom_line(data = difference4, aes(x = KNEE, y = t_apGRF_peak1_PERC), 
+            group = 1, color = "purple") + 
+  geom_line(data = difference4, aes(x = KNEE, y = t_apGRF_peak2_PERC), 
+            group = 1, color = "pink") + 
+  geom_line(data = difference4, aes(x = KNEE, y = t_mlGRF_peak1_PERC), 
+            group = 1, color = "steelblue") + 
+  geom_line(data = difference4, aes(x = KNEE, y = t_mlGRF_peak2_PERC), 
+            group = 1, color = "yellow") +
+  geom_line(data = difference4, aes(x = KNEE, y = t_mlGRF_peak3_PERC), 
+            group = 1, color = "orange") +
+  xlab("KNEE") + ylab("mean")
+```
 
 
 
